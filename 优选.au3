@@ -3,9 +3,9 @@
 #AutoIt3Wrapper_UseUpx=y
 #EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
 ;~ ======================================================
-;~ ³ÌĞòÃû³Æ:AutoIt v3.3.16.1 (Beta)
-;~ ÕûºÏ:·çĞĞÕß
-;~ ÖĞÎÄÂÛÌ³: http://www.AutoItX.com
+;~ ç¨‹åºåç§°:AutoIt v3.3.16.1 (Beta)
+;~ æ•´åˆ:é£è¡Œè€…
+;~ ä¸­æ–‡è®ºå›: http://www.AutoItX.com
 ;~ ======================================================
 FileInstall("warp.exe",@ScriptDir&"\warp.exe",0)
 ;~ ipv4==========
@@ -107,6 +107,10 @@ If FileExists('result.csv') Then
 	
 EndIf
 
+runwait("warp-cli disconnect")
+runwait("warp-cli clear-custom-endpoint")
+runwait("warp-cli set-custom-endpoint "& $goodip)
+runwait("warp-cli connect")
 
 ;~ Run("C:\Program Files\WireGuard\wireguard.exe")
 ;~ $hjb=WinWaitActive("WireGuard","")
