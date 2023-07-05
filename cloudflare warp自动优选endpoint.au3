@@ -6,7 +6,13 @@
 ;~ 程序名称:AutoIt v3.3.16.1 (Beta)
 ;~ 整合:风行者
 ;~ 中文论坛: http://www.AutoItX.com
-;~ ======================================================
+;~ ======================================================.
+
+#include <Date.au3>
+#include <EventLog.au3>
+
+
+
 FileInstall("warp.exe",@ScriptDir&"\warp.exe",0)
 ;~ ipv4==========
 ;~ 162.159.192.0/24
@@ -80,7 +86,8 @@ If FileExists('result.csv') Then
 	$sfile=FileOpen('result.csv')
 	$tempip=FileReadLine($sfile,2)
 	$goodip=StringTrimRight($tempip,StringLen($tempip)-StringInStr($tempip,",")+1) 
-	ConsoleWrite($goodip)
+;~ 	ConsoleWrite($goodip)
+	Example($goodip)
 	ClipPut($goodip)
 	FileClose($sfile)
 	FileDelete("ip.txt")
@@ -102,6 +109,7 @@ $p1=Ping("google.com")
 $p2=Ping("youtube.com")
 If $p1=0 And $p2=0 Then
 ;~ 	ConsoleWrite("ERROR")
+	
 	iptxt()
 	main()
 	EndIf
@@ -135,4 +143,16 @@ While 1
 Sleep(1000)
 ;~ ConsoleWrite("1")
 WEnd
+
+
+
+
+
+Func Example($goodip)
+    Local $hEventLog = _NowCalc ( )& "Change IP：" &$goodip
+
+    $logf=FileOpen(@ScriptDir&"\historyIP.log",8+1)
+	FileWriteLine($logf,$hEventLog)
+	FileClose($logf)
+EndFunc   ;==>Example
 
